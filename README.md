@@ -14,16 +14,42 @@ This project implements a high-performance, production-grade real-time video inf
 
 ## Core Objectives
 
+<<<<<<< HEAD
 - **Real-Time Streaming**: Continuous video input processing from multiple sources (RTSP, webcam, video files, YouTube)
 - **Low Latency**: Average end-to-end latency of **59-73ms** across different scenarios
 - **High Throughput**: Sustained processing at **6.6-11.14 FPS** depending on video complexity
 - **Scalability**: Handles multiple concurrent streams with independent processing
 - **Production-Ready**: Comprehensive error handling, logging, and monitoring
 - **Modularity**: Component-based architecture for easy extension
+=======
+![Dashboard Overview](images/dashboard_smartEye.png)
+>>>>>>> 0440ba18a20aeb847f4294e2db5d31f138cc6337
 
 ## System Architecture
 
+<<<<<<< HEAD
 ### 1. High-Level Architecture
+=======
+![Dashboard Features](images/feature.png)
+
+### Dashboard Components
+
+- **Metrics Panel**: System-wide performance metrics including FPS, latency, CPU/GPU usage, and stability scores
+- **Stream Manager**: Configure and manage multiple video streams simultaneously
+- **Video Player Grid**: Display multiple video streams with real-time annotations
+- **Detection Results Viewer**: View detailed detection results for each stream
+
+## 🎥 Video Demo
+
+Watch the system in action:
+
+[![SmartEye Demo Video](./demo_preview.png)](https://drive.google.com/file/d/13mQciNUqDtWclVocTC2E-9J4UiUjYj0L/view?usp=sharing)
+
+**Video URL**: [https://drive.google.com/file/d/13mQciNUqDtWclVocTC2E-9J4UiUjYj0L/view?usp=sharing](https://drive.google.com/file/d/13mQciNUqDtWclVocTC2E-9J4UiUjYj0L/view?usp=sharing)
+
+
+## 🏗️ System Architecture
+>>>>>>> 0440ba18a20aeb847f4294e2db5d31f138cc6337
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
@@ -744,6 +770,7 @@ For detailed analysis, see [PROJECT_REPORT.md](PROJECT_REPORT.md).
    - Verify CORS configuration in server
    - Check browser console for errors
 
+<<<<<<< HEAD
 ## Development Guidelines
 
 ### Code Quality
@@ -820,4 +847,6 @@ SmartEye represents a modern, efficient approach to video management systems tha
 
 ---
 
+=======
+>>>>>>> 0440ba18a20aeb847f4294e2db5d31f138cc6337
 **SmartEye** - Ultra-Optimized Real-Time Vision Streaming System
