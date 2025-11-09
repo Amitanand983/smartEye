@@ -1,0 +1,47 @@
+{
+  "file_info": {
+    "input_file": "results\\person_car_20251109_175056.jsonl",
+    "stream_name": "person_car",
+    "total_frames": 190,
+    "file_size_bytes": 386038
+  },
+  "performance": {
+    "total_fps": 11.14,
+    "throughput_fps": 11.14,
+    "average_fps": 11.14,
+    "frames_processed": 190,
+    "processing_duration_seconds": 17.06
+  },
+  "latency": {
+    "average_ms": 61.13,
+    "min_ms": 55.28,
+    "max_ms": 90.72,
+    "unit": "milliseconds"
+  },
+  "processing_time": {
+    "average_ms": 0.0,
+    "min_ms": 0.0,
+    "max_ms": 0.0,
+    "unit": "milliseconds"
+  },
+  "detections": {
+    "total_detections": 2718,
+    "average_per_frame": 14.31,
+    "frames_with_detections": 190,
+    "detection_rate_percent": 100.0,
+    "detections_by_label": {
+      "car": 1621,
+      "person": 686,
+      "traffic light": 387,
+      "truck": 11,
+      "bus": 6,
+      "bicycle": 5,
+      "train": 2
+    }
+  },
+  "throughput": {
+    "frames_per_second": 11.14,
+    "total_frames": 190,
+    "processing_rate": "11.14 FPS"
+  }
+}

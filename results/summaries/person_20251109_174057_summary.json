@@ -1,0 +1,44 @@
+{
+  "file_info": {
+    "input_file": "results\\person-3_20251109_174057.jsonl",
+    "stream_name": "person-3",
+    "total_frames": 40,
+    "file_size_bytes": 195279
+  },
+  "performance": {
+    "total_fps": 6.6,
+    "throughput_fps": 6.6,
+    "average_fps": 6.6,
+    "frames_processed": 40,
+    "processing_duration_seconds": 6.06
+  },
+  "latency": {
+    "average_ms": 73.68,
+    "min_ms": 63.6,
+    "max_ms": 100.42,
+    "unit": "milliseconds"
+  },
+  "processing_time": {
+    "average_ms": 0.0,
+    "min_ms": 0.0,
+    "max_ms": 0.0,
+    "unit": "milliseconds"
+  },
+  "detections": {
+    "total_detections": 1416,
+    "average_per_frame": 35.4,
+    "frames_with_detections": 40,
+    "detection_rate_percent": 100.0,
+    "detections_by_label": {
+      "person": 1362,
+      "bird": 39,
+      "dog": 9,
+      "motorcycle": 6
+    }
+  },
+  "throughput": {
+    "frames_per_second": 6.6,
+    "total_frames": 40,
+    "processing_rate": "6.6 FPS"
+  }
+}

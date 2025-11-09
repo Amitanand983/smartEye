@@ -41,6 +41,10 @@ logs/
 # Results
 results/
 *.jsonl
+# Allow specific results subfolders
+!results/jsonl/
+!results/summaries/
+!results/annotated_videos/
 
 # Models (auto-downloaded, don't track)
 *.pt

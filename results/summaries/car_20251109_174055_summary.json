@@ -1,0 +1,45 @@
+{
+  "file_info": {
+    "input_file": "results\\car-3_20251109_174055.jsonl",
+    "stream_name": "car-3",
+    "total_frames": 55,
+    "file_size_bytes": 20666
+  },
+  "performance": {
+    "total_fps": 7.39,
+    "throughput_fps": 7.39,
+    "average_fps": 7.39,
+    "frames_processed": 55,
+    "processing_duration_seconds": 7.44
+  },
+  "latency": {
+    "average_ms": 59.03,
+    "min_ms": 53.94,
+    "max_ms": 65.45,
+    "unit": "milliseconds"
+  },
+  "processing_time": {
+    "average_ms": 0.0,
+    "min_ms": 0.0,
+    "max_ms": 0.0,
+    "unit": "milliseconds"
+  },
+  "detections": {
+    "total_detections": 105,
+    "average_per_frame": 1.91,
+    "frames_with_detections": 55,
+    "detection_rate_percent": 100.0,
+    "detections_by_label": {
+      "person": 51,
+      "car": 41,
+      "truck": 9,
+      "train": 3,
+      "bus": 1
+    }
+  },
+  "throughput": {
+    "frames_per_second": 7.39,
+    "total_frames": 55,
+    "processing_rate": "7.39 FPS"
+  }
+}
