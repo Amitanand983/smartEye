@@ -41,9 +41,10 @@ The dashboard includes:
 
 Watch the system in action:
 
-[![SmartEye Demo Video](https://img.youtube.com/vi/YOUR_VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID)
+[![SmartEye Demo Video](./demo_preview.png)](https://drive.google.com/file/d/13mQciNUqDtWclVocTC2E-9J4UiUjYj0L/view?usp=sharing)
 
-**Video URL**: [https://www.youtube.com/watch?v=YOUR_VIDEO_ID](https://www.youtube.com/watch?v=YOUR_VIDEO_ID)
+**Video URL**: [https://drive.google.com/file/d/13mQciNUqDtWclVocTC2E-9J4UiUjYj0L/view?usp=sharing](https://drive.google.com/file/d/13mQciNUqDtWclVocTC2E-9J4UiUjYj0L/view?usp=sharing)
+
 
 ## 🏗️ System Architecture
 
@@ -308,11 +309,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - [Ultralytics](https://ultralytics.com/) for YOLOv8
 - [FastAPI](https://fastapi.tiangolo.com/) for the web framework
 - [React](https://react.dev/) for the frontend framework
-
-## 📧 Contact
-
-For questions or support, please open an issue on GitHub.
-
----
 
 **SmartEye** - Ultra-Optimized Real-Time Vision Streaming System
