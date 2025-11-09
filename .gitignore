@@ -37,6 +37,9 @@ venv.bak/
 # Logs
 *.log
 logs/
+# Allow specific log files in logs folder
+!logs/client.log
+!logs/server.log
 
 # Results
 results/
@@ -58,8 +61,7 @@ Thumbs.db
 desktop.ini
 
 # Project specific
-server.log
-client.log
+# server.log and client.log are now in logs/ folder
 *.db
 *.sqlite
 
