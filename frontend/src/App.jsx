@@ -3,7 +3,17 @@ import Dashboard from './components/Dashboard'
 import Header from './components/Header'
 import './App.css'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const resolveDefaultApiUrl = () => {
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL
+  }
+  if (typeof window !== 'undefined') {
+    return window.location.origin
+  }
+  return 'http://localhost:8000'
+}
+
+const API_URL = resolveDefaultApiUrl()
 
 function App() {
   const [serverStatus, setServerStatus] = useState('checking')
