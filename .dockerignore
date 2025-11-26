@@ -35,7 +35,9 @@ downloads/
 *.jsonl
 *.avi
 *.mp4
-yolov8*.pt
+
+# Don't exclude the model - we'll download it at runtime
+# yolov8*.pt
 
 # Git
 .git/
@@ -49,7 +51,7 @@ VERCEL_DEPLOYMENT.md
 RAILWAY_DEPLOYMENT.md
 images/
 
-# Scripts
+# Scripts (not needed in container)
 run_example.sh
 run_example.bat
 setup_venv.sh
@@ -58,6 +60,8 @@ test_connection.py
 generate_summary.py
 generate_annotated_video.py
 process_results.py
+client.log
+server.log
 
 # Frontend (deploy separately)
 frontend/
@@ -70,3 +74,9 @@ api/
 # Test files
 *.test.py
 tests/
+
+# Large files
+*.pt
+*.pth
+*.onnx
+
