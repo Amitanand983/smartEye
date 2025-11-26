@@ -63,9 +63,9 @@ process_results.py
 client.log
 server.log
 
-# Frontend (deploy separately)
-frontend/
+# Node modules (will be installed inside container)
 node_modules/
+frontend/node_modules/
 
 # Vercel files
 vercel.json
