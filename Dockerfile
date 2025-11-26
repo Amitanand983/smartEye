@@ -1,4 +1,4 @@
-# Use Python 3.11 slim image (smaller base)
+# Use Python 3.11 slim image
 FROM python:3.11-slim
 
 # Set working directory
@@ -8,41 +8,43 @@ WORKDIR /app
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PIP_NO_CACHE_DIR=1 \
-    PIP_DISABLE_PIP_VERSION_CHECK=1 \
-    DEBIAN_FRONTEND=noninteractive
+    PIP_DISABLE_PIP_VERSION_CHECK=1
 
 # Install minimal system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libgl1 \
     libglib2.0-0 \
     libgomp1 \
-    && rm -rf /var/lib/apt/lists/* \
-    && apt-get clean
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements
 COPY requirements.txt .
 
-# Install dependencies with size optimizations
-# Install CPU-only torch to save ~4GB
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir \
-    torch torchvision --index-url https://download.pytorch.org/whl/cpu && \
-    pip install --no-cache-dir \
-    fastapi==0.104.0 \
-    uvicorn[standard]==0.24.0 \
-    opencv-python-headless==4.8.0.76 \
-    numpy==1.24.3 \
-    pillow==10.0.0 \
-    pydantic==2.5.0 \
-    python-multipart==0.0.6 \
-    aiofiles==23.2.1 \
-    pyyaml==6.0.1 \
-    psutil==5.9.5 \
-    httpx==0.25.0 \
-    websockets==12.0 \
-    ultralytics==8.0.196 \
-    yt-dlp==2023.10.13 && \
-    pip cache purge
+# Install PyTorch CPU version first (saves ~4GB)
+RUN pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cpu
+
+# Install core dependencies
+RUN pip install --no-cache-dir \
+    fastapi>=0.104.0 \
+    "uvicorn[standard]>=0.24.0" \
+    pydantic>=2.5.0 \
+    httpx>=0.25.0 \
+    websockets>=12.0 \
+    python-multipart>=0.0.6 \
+    aiofiles>=23.2.0 \
+    pyyaml>=6.0.1 \
+    psutil>=5.9.0
+
+# Install vision dependencies
+RUN pip install --no-cache-dir \
+    numpy>=1.24.0 \
+    pillow>=10.0.0 \
+    opencv-python-headless>=4.8.0
+
+# Install YOLOv8 and yt-dlp
+RUN pip install --no-cache-dir \
+    ultralytics>=8.0.0 \
+    yt-dlp>=2023.10.0
 
 # Copy only necessary files
 COPY server.py config.yaml ./
