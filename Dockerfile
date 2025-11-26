@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgl1 \
     libglib2.0-0 \
     libgomp1 \
+    wget \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements
@@ -46,6 +47,9 @@ RUN pip install --no-cache-dir \
     ultralytics>=8.0.0 \
     yt-dlp>=2023.10.0
 
+# Pre-download YOLOv8 model to avoid startup delay
+RUN python -c "from ultralytics import YOLO; YOLO('yolov8n.pt')"
+
 # Copy only necessary files
 COPY server.py config.yaml ./
 
@@ -55,10 +59,10 @@ RUN mkdir -p logs results/jsonl results/summaries results/annotated_videos downl
 # Expose port
 EXPOSE 8000
 
-# Health check - increased start period to allow model download
-HEALTHCHECK --interval=30s --timeout=10s --start-period=120s --retries=3 \
+# Simplified health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
     CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=5)" || exit 1
 
-# Run server
-CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]
+# Run server with explicit port handling
+CMD uvicorn server:app --host 0.0.0.0 --port ${PORT:-8000} --workers 1
 
