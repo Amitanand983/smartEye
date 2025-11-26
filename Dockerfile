@@ -16,6 +16,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libglib2.0-0 \
     libgomp1 \
     wget \
+    nodejs \
+    npm \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements
@@ -49,6 +51,15 @@ RUN pip install --no-cache-dir \
 
 # Pre-download YOLOv8 model to avoid startup delay
 RUN python -c "from ultralytics import YOLO; YOLO('yolov8n.pt')"
+
+# Copy frontend dependencies separately for better caching
+COPY frontend/package*.json ./frontend/
+RUN cd frontend && npm ci
+
+# Copy frontend source and build optimized assets
+COPY frontend ./frontend
+RUN cd frontend && npm run build && mv dist /app/frontend_dist
+RUN rm -rf frontend
 
 # Copy application files
 COPY server.py config.yaml start.sh ./

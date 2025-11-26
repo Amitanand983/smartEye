@@ -21,7 +21,8 @@ import numpy as np
 import psutil 
 from fastapi import FastAPI, HTTPException, UploadFile, File, Body
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse, Response
+from fastapi.responses import JSONResponse, Response, HTMLResponse, FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 from ultralytics import YOLO
 
@@ -99,6 +100,11 @@ async def lifespan(app: FastAPI):
 
 
 # FastAPI app with lifespan events
+BASE_DIR = Path(__file__).parent
+FRONTEND_DIST = BASE_DIR / "frontend_dist"
+FRONTEND_INDEX = FRONTEND_DIST / "index.html"
+
+
 app = FastAPI(
     title="SmartEye Inference Server",
     description="Ultra-optimized real-time YOLOv8 inference server",
@@ -114,6 +120,14 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+if FRONTEND_DIST.exists():
+    assets_dir = FRONTEND_DIST / "assets"
+    if assets_dir.exists():
+        app.mount("/assets", StaticFiles(directory=assets_dir), name="frontend-assets")
+    logger.info("Frontend bundle detected; UI will be served at root")
+else:
+    logger.info("Frontend bundle not found; root will return API metadata")
 
 # Global exception handler to prevent server crashes
 @app.exception_handler(Exception)
@@ -1214,9 +1228,12 @@ async def health_check():
     return {"status": "healthy", "timestamp": time.time()}
 
 
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 async def root():
-    """Root endpoint with API information"""
+    """Serve frontend UI when available, otherwise expose API metadata"""
+    if FRONTEND_INDEX.exists():
+        return HTMLResponse(FRONTEND_INDEX.read_text(encoding="utf-8"))
+    
     return {
         "service": "SmartEye Inference Server",
         "version": "1.0.0",
@@ -1234,6 +1251,24 @@ async def root():
             "docs": "/docs"
         }
     }
+
+
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    """Return frontend favicon when UI bundle exists"""
+    favicon_path = FRONTEND_DIST / "favicon.ico"
+    if favicon_path.exists():
+        return FileResponse(favicon_path)
+    raise HTTPException(status_code=404)
+
+
+@app.get("/vite.svg", include_in_schema=False)
+async def vite_icon():
+    """Serve Vite SVG asset when present"""
+    vite_svg = FRONTEND_DIST / "vite.svg"
+    if vite_svg.exists():
+        return FileResponse(vite_svg)
+    raise HTTPException(status_code=404)
 
 
 if __name__ == "__main__":
