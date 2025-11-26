@@ -62,9 +62,6 @@ RUN mkdir -p logs results/jsonl results/summaries results/annotated_videos downl
 # Expose port
 EXPOSE 8000
 
-# Simplified health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
-    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=5)" || exit 1
-
 # Run server using startup script
+# Railway will handle health checks via the /health endpoint
 CMD ["./start.sh"]
