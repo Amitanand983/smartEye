@@ -19,6 +19,9 @@ pyyaml>=6.0.1
 # Performance & Monitoring
 psutil>=5.9.0
 
+# YouTube Download Support
+yt-dlp>=2023.10.0
+
 # Optional GPU Support
 # torch>=2.0.0  # Uncomment if using PyTorch backend
 # onnxruntime-gpu>=1.16.0  # Uncomment for ONNX GPU inference

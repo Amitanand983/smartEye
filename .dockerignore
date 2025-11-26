@@ -1,0 +1,72 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+venv/
+env/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+results/
+logs/
+downloads/
+*.log
+*.jsonl
+*.avi
+*.mp4
+yolov8*.pt
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+PROJECT_REPORT.md
+VERCEL_DEPLOYMENT.md
+RAILWAY_DEPLOYMENT.md
+images/
+
+# Scripts
+run_example.sh
+run_example.bat
+setup_venv.sh
+setup_venv.bat
+test_connection.py
+generate_summary.py
+generate_annotated_video.py
+process_results.py
+
+# Frontend (deploy separately)
+frontend/
+node_modules/
+
+# Vercel files
+vercel.json
+api/
+
+# Test files
+*.test.py
+tests/

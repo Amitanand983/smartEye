@@ -898,13 +898,14 @@ async def start_stream(request: Dict):
                     raise subprocess.TimeoutExpired(yt_dlp_cmd, 300)
                 
                 if download_process.returncode != 0:
-                    error_msg = download_process.stderr or download_process.stdout or "Unknown error"
+                    # Get error message from download progress tracking
+                    error_msg = download_progress[stream_name].get("message", "Unknown error")
                     logger.error(f"YouTube download failed: {error_msg}")
                     download_progress[stream_name]["status"] = "failed"
                     download_progress[stream_name]["message"] = "Download failed"
                     raise HTTPException(
                         status_code=400,
-                        detail=f"Failed to download YouTube video: {error_msg[:200]}"
+                        detail=f"Failed to download YouTube video: {error_msg}"
                     )
                 
                 # Check if file was downloaded
